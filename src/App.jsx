@@ -36,18 +36,18 @@ function App() {
   return (
     <ParallaxProvider>
       <Router>
-        <div className={`min-h-screen ${darkMode ? "dark" : ""}`}>
+        <div className={`min-h-screen ${darkMode ? "dark bg-gray-900 text-white" : "bg-white text-gray-900"}`}>
           <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
           <AnimatePresence mode="wait">
             <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/services" element={<Services />} />
-              <Route path="/projects" element={<Projects />} />
-              <Route path="/resume" element={<Resume />} />
-              <Route path="/contact" element={<Contact />} />
+              <Route path="/" element={<Home darkMode={darkMode} />} />
+              <Route path="/services" element={<Services darkMode={darkMode} />} />
+              <Route path="/projects" element={<Projects darkMode={darkMode} />} />
+              <Route path="/resume" element={<Resume darkMode={darkMode} />} />
+              <Route path="/contact" element={<Contact darkMode={darkMode} />} />
             </Routes>
           </AnimatePresence>
-          <Footer />
+          <Footer darkMode={darkMode} />
           <ToastContainer position="bottom-right" />
         </div>
       </Router>

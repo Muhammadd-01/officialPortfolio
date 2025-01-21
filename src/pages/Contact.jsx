@@ -3,7 +3,7 @@ import { motion } from "framer-motion"
 import { FaEnvelope, FaPhone, FaWhatsapp } from "react-icons/fa"
 import { toast } from "react-toastify"
 
-const Contact = () => {
+const Contact = ({ darkMode }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -16,7 +16,6 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    // Here you would typically send the form data to a server
     console.log("Form submitted:", formData)
     toast.success("Message sent successfully!")
     setFormData({ name: "", email: "", message: "" })
@@ -27,15 +26,15 @@ const Contact = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="min-h-screen py-20 px-4 sm:px-6 lg:px-8 bg-gray-100 dark:bg-gray-900"
+      className={`min-h-screen py-20 px-4 sm:px-6 lg:px-8 ${darkMode ? "bg-gray-900 text-white" : "bg-gray-100 text-gray-900"}`}
     >
       <div className="max-w-3xl mx-auto">
-        <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white mb-8 text-center">Contact Me</h2>
+        <h2 className="text-3xl font-extrabold mb-8 text-center">Contact Me</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                <label htmlFor="name" className="block text-sm font-medium">
                   Name
                 </label>
                 <input
@@ -45,11 +44,13 @@ const Contact = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                  className={`mt-1 block w-full rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 ${
+                    darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-300"
+                  }`}
                 />
               </div>
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                <label htmlFor="email" className="block text-sm font-medium">
                   Email
                 </label>
                 <input
@@ -59,11 +60,13 @@ const Contact = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                  className={`mt-1 block w-full rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 ${
+                    darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-300"
+                  }`}
                 />
               </div>
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                <label htmlFor="message" className="block text-sm font-medium">
                   Message
                 </label>
                 <textarea
@@ -73,7 +76,9 @@ const Contact = () => {
                   value={formData.message}
                   onChange={handleChange}
                   required
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                  className={`mt-1 block w-full rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 ${
+                    darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-300"
+                  }`}
                 ></textarea>
               </div>
               <div>
@@ -87,9 +92,9 @@ const Contact = () => {
             </form>
           </div>
           <div className="space-y-6">
-            <ContactItem icon={<FaEnvelope />} text="your.email@example.com" />
-            <ContactItem icon={<FaPhone />} text="+1 (123) 456-7890" />
-            <ContactItem icon={<FaWhatsapp />} text="+1 (123) 456-7890" />
+            <ContactItem icon={<FaEnvelope />} text="your.email@example.com" darkMode={darkMode} />
+            <ContactItem icon={<FaPhone />} text="+1 (123) 456-7890" darkMode={darkMode} />
+            <ContactItem icon={<FaWhatsapp />} text="+1 (123) 456-7890" darkMode={darkMode} />
             <a
               href="https://wa.me/1234567890"
               target="_blank"
@@ -99,10 +104,6 @@ const Contact = () => {
               <FaWhatsapp className="mr-2" />
               Chat on WhatsApp
             </a>
-            <div className="mt-8">
-              <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-4">Social Media</h3>
-              {/* Add your social media links here */}
-            </div>
           </div>
         </div>
       </div>
@@ -110,9 +111,9 @@ const Contact = () => {
   )
 }
 
-const ContactItem = ({ icon, text }) => (
-  <div className="flex items-center space-x-3 text-gray-700 dark:text-gray-300">
-    <span className="text-blue-600 dark:text-blue-400">{icon}</span>
+const ContactItem = ({ icon, text, darkMode }) => (
+  <div className={`flex items-center space-x-3 ${darkMode ? "text-gray-300" : "text-gray-700"}`}>
+    <span className={darkMode ? "text-blue-400" : "text-blue-600"}>{icon}</span>
     <span>{text}</span>
   </div>
 )

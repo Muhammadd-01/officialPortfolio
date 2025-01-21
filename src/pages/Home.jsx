@@ -1,13 +1,24 @@
-import React from "react"
+import React, { useCallback } from "react"
 import { motion } from "framer-motion"
 import { ParallaxBanner } from "react-scroll-parallax"
 import { FaArrowRight } from "react-icons/fa"
 import Particles from "react-tsparticles"
 import { loadFull } from "tsparticles"
 
-const Home = () => {
-  const particlesInit = async (main) => {
-    await loadFull(main)
+const Home = ({ darkMode }) => {
+  const particlesInit = useCallback(async (engine) => {
+    await loadFull(engine)
+  }, [])
+
+  const particlesConfig = {
+    particles: {
+      number: { value: 80, density: { enable: true, value_area: 800 } },
+      color: { value: darkMode ? "#ffffff" : "#000000" },
+      shape: { type: "circle" },
+      opacity: { value: 0.5, random: true },
+      size: { value: 3, random: true },
+      move: { enable: true, speed: 1, direction: "none", random: true, straight: false, out_mode: "out" },
+    },
   }
 
   return (
@@ -15,86 +26,9 @@ const Home = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="min-h-screen relative"
+      className={`min-h-screen relative ${darkMode ? "bg-gradient-to-br from-gray-900 to-blue-900" : "bg-gradient-to-br from-blue-100 to-white"}`}
     >
-      <Particles
-        id="tsparticles"
-        init={particlesInit}
-        options={{
-          fullScreen: { enable: false },
-          background: {
-            color: {
-              value: "transparent",
-            },
-          },
-          fpsLimit: 120,
-          interactivity: {
-            events: {
-              onClick: {
-                enable: true,
-                mode: "push",
-              },
-              onHover: {
-                enable: true,
-                mode: "repulse",
-              },
-              resize: true,
-            },
-            modes: {
-              push: {
-                quantity: 4,
-              },
-              repulse: {
-                distance: 200,
-                duration: 0.4,
-              },
-            },
-          },
-          particles: {
-            color: {
-              value: "#ffffff",
-            },
-            links: {
-              color: "#ffffff",
-              distance: 150,
-              enable: true,
-              opacity: 0.5,
-              width: 1,
-            },
-            collisions: {
-              enable: true,
-            },
-            move: {
-              direction: "none",
-              enable: true,
-              outModes: {
-                default: "bounce",
-              },
-              random: false,
-              speed: 2,
-              straight: false,
-            },
-            number: {
-              density: {
-                enable: true,
-                area: 800,
-              },
-              value: 80,
-            },
-            opacity: {
-              value: 0.5,
-            },
-            shape: {
-              type: "circle",
-            },
-            size: {
-              value: { min: 1, max: 5 },
-            },
-          },
-          detectRetina: true,
-        }}
-        className="absolute inset-0"
-      />
+      <Particles id="tsparticles" init={particlesInit} options={particlesConfig} className="absolute inset-0" />
       <ParallaxBanner
         layers={[
           {
