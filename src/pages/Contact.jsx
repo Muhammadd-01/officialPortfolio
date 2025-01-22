@@ -1,9 +1,9 @@
 import React, { useState } from "react"
 import { motion } from "framer-motion"
 import { FaEnvelope, FaPhone, FaWhatsapp } from "react-icons/fa"
-import { toast } from "react-toastify"
+//import AnimatedBackground from "../components/AnimatedBackground" //Removed as it's not used in the updated code
 
-const Contact = ({ darkMode }) => {
+const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -17,24 +17,31 @@ const Contact = ({ darkMode }) => {
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log("Form submitted:", formData)
-    toast.success("Message sent successfully!")
-    setFormData({ name: "", email: "", message: "" })
+    // Add your form submission logic here
   }
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className={`min-h-screen py-20 px-4 sm:px-6 lg:px-8 ${darkMode ? "bg-gray-900 text-white" : "bg-gray-100 text-gray-900"}`}
-    >
-      <div className="max-w-3xl mx-auto">
-        <h2 className="text-3xl font-extrabold mb-8 text-center">Contact Me</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div className="relative min-h-screen py-16">
+      {/* <AnimatedBackground /> */} {/*Removed as it's not used in the updated code*/}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="container mx-auto px-6 py-16 z-10 relative"
+      >
+        <motion.h1
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-4xl font-bold text-gray-800 dark:text-white mb-8 text-center"
+        >
+          Contact Me
+        </motion.h1>
+        <div className="grid md:grid-cols-2 gap-8">
           <div>
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium">
+                <label htmlFor="name" className="block text-gray-700 dark:text-gray-300 mb-2">
                   Name
                 </label>
                 <input
@@ -43,14 +50,12 @@ const Contact = ({ darkMode }) => {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   required
-                  className={`mt-1 block w-full rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 ${
-                    darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-300"
-                  }`}
                 />
               </div>
               <div>
-                <label htmlFor="email" className="block text-sm font-medium">
+                <label htmlFor="email" className="block text-gray-700 dark:text-gray-300 mb-2">
                   Email
                 </label>
                 <input
@@ -59,64 +64,55 @@ const Contact = ({ darkMode }) => {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   required
-                  className={`mt-1 block w-full rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 ${
-                    darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-300"
-                  }`}
                 />
               </div>
               <div>
-                <label htmlFor="message" className="block text-sm font-medium">
+                <label htmlFor="message" className="block text-gray-700 dark:text-gray-300 mb-2">
                   Message
                 </label>
                 <textarea
                   id="message"
                   name="message"
-                  rows="4"
                   value={formData.message}
                   onChange={handleChange}
+                  rows="4"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   required
-                  className={`mt-1 block w-full rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 ${
-                    darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-300"
-                  }`}
                 ></textarea>
               </div>
-              <div>
-                <button
-                  type="submit"
-                  className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                >
-                  Send Message
-                </button>
-              </div>
+              <button
+                type="submit"
+                className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300"
+              >
+                Send Message
+              </button>
             </form>
           </div>
-          <div className="space-y-6">
-            <ContactItem icon={<FaEnvelope />} text="your.email@example.com" darkMode={darkMode} />
-            <ContactItem icon={<FaPhone />} text="+1 (123) 456-7890" darkMode={darkMode} />
-            <ContactItem icon={<FaWhatsapp />} text="+1 (123) 456-7890" darkMode={darkMode} />
-            <a
-              href="https://wa.me/1234567890"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700"
-            >
-              <FaWhatsapp className="mr-2" />
-              Chat on WhatsApp
-            </a>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="space-y-4 bg-white bg-opacity-10 p-8 rounded-lg shadow-lg"
+          >
+            <h2 className="text-2xl font-semibold text-white mb-4">Contact Information</h2>
+            <div className="flex items-center space-x-4">
+              <FaEnvelope className="text-gray-300" />
+              <a href="mailto:affan.work05@gmail.com" className="text-gray-300 hover:text-white">
+                affan.work05@gmail.com
+              </a>
+            </div>
+            <div className="flex items-center space-x-4">
+              <FaPhone className="text-gray-300" />
+              <span className="text-gray-300">+1 (123) 456-7890</span>
+            </div>
+          </motion.div>
         </div>
-      </div>
-    </motion.div>
+      </motion.div>
+    </div>
   )
 }
-
-const ContactItem = ({ icon, text, darkMode }) => (
-  <div className={`flex items-center space-x-3 ${darkMode ? "text-gray-300" : "text-gray-700"}`}>
-    <span className={darkMode ? "text-blue-400" : "text-blue-600"}>{icon}</span>
-    <span>{text}</span>
-  </div>
-)
 
 export default Contact
 

@@ -2,27 +2,11 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-:root {
-  --primary-light: #6a11cb;
-  --secondary-light: #2575fc;
-  --background-light: #ffffff;
-  --text-light: #333333;
-
-  --primary-dark: #ff00cc;
-  --secondary-dark: #3333ff;
-  --background-dark: #1a1a1a;
-  --text-dark: #ffffff;
-}
-
 body {
   font-family: "Inter", sans-serif;
 }
 
-.gradient-bg-light {
-  background: linear-gradient(135deg, var(--primary-light), var(--secondary-light));
-}
-
-.gradient-bg-dark {
-  background: linear-gradient(135deg, var(--primary-dark), var(--secondary-dark));
+.container {
+  max-width: 1200px;
 }
 
