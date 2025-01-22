@@ -19,6 +19,7 @@ const Header = () => {
             <NavLink to="/">Home</NavLink>
             <NavLink to="/about">About</NavLink>
             <NavLink to="/projects">Projects</NavLink>
+            <NavLink to="/services">Services</NavLink>
             <NavLink to="/contact">Contact</NavLink>
           </div>
           <button className="md:hidden" onClick={toggleMenu}>
@@ -40,6 +41,9 @@ const Header = () => {
             </NavLink>
             <NavLink to="/projects" onClick={toggleMenu}>
               Projects
+            </NavLink>
+            <NavLink to="/services" onClick={toggleMenu}>
+              Services
             </NavLink>
             <NavLink to="/contact" onClick={toggleMenu}>
               Contact

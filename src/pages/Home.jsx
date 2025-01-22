@@ -18,6 +18,16 @@ const Home = () => {
           I'm a passionate web developer creating amazing digital experiences. With expertise in React, Node.js, and
           modern web technologies, I bring ideas to life through clean, efficient, and user-friendly applications.
         </motion.p>
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }} className="mb-8">
+          <h2 className="text-2xl font-semibold text-white mb-4">What I Offer:</h2>
+          <ul className="list-disc list-inside text-gray-300 space-y-2">
+            <li>Custom web application development</li>
+            <li>Responsive and mobile-first design</li>
+            <li>Performance optimization and SEO</li>
+            <li>API integration and backend development</li>
+            <li>Ongoing maintenance and support</li>
+          </ul>
+        </motion.div>
         <motion.div initial={{ scale: 0.8 }} animate={{ scale: 1 }} className="space-x-4">
           <Link
             to="/projects"
